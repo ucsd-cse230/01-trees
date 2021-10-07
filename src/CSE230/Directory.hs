@@ -193,7 +193,7 @@ allFiles dir = reverse (foldDir f [] dir)
 -------------------------------------------------------------------------------
 --
 -- >>> allDirs example
--- [".","img","src","CSE230"]
+-- [".","out","src","CSE230"]
 
 allDirs :: Dir FilePath -> [FilePath]
 allDirs dir = reverse (foldDir f [] dir)
