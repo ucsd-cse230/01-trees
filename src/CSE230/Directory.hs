@@ -193,7 +193,7 @@ allFiles dir = reverse (foldDir f [] dir)
 -------------------------------------------------------------------------------
 --
 -- >>> allDirs example
--- [".","img","src","CSE230"]
+-- [".","out","src","CSE230"]
 
 allDirs :: Dir FilePath -> [FilePath]
 allDirs dir = reverse (foldDir f [] dir)
@@ -207,7 +207,7 @@ allDirs dir = reverse (foldDir f [] dir)
 -------------------------------------------------------------------------------
 --
 -- >>> findFiles ".hs" example
--- ["./src/Main.hs","./src/CSE230/Directory.hs","./src/CSE230/Doc.hs","./src/CSE230/Graphics.hs","./src/CSE230/List.hs","./src/CSE230/Shapes.hs"]
+-- ["./src/CSE230/Directory.hs","./src/CSE230/Doc.hs","./src/CSE230/Graphics.hs","./src/CSE230/List.hs","./src/CSE230/Shapes.hs", "./src/Main.hs"]
 --
 findFiles :: String -> Dir FilePath -> [FilePath]
 findFiles sub dir = reverse (foldDir f [] dir)
