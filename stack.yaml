@@ -1,9 +1,12 @@
-resolver: lts-16.8
-compiler: ghc-8.10.2
-allow-newer: true
+resolver: lts-18.28
+compiler: ghc-8.10.7
 packages:
         - .
 extra-deps: 
-- htdp-image-1.1.0.0
-- AC-Angle-1.0
-- gloss-export-0.1.0.2
+- diagrams-core-1.5.0
+- diagrams-lib-1.4.4
+- diagrams-rasterific-1.4.2.1
+- monoid-extras-0.6
+- active-0.2.0.16
+- dual-tree-0.2.3.1
+- colour-2.3.6

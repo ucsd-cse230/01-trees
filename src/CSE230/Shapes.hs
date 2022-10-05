@@ -1,6 +1,5 @@
 module CSE230.Shapes where
 
-import Graphics.Htdp
 import CSE230.List 
 import CSE230.Graphics
 

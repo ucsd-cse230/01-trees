@@ -1,15 +1,31 @@
-module CSE230.Graphics where
+module CSE230.Graphics
+  ( Image
+  , save
+  ) where
 
-import           Graphics.Htdp
-import qualified Graphics.Gloss.Export    as G
-import qualified Graphics.Gloss           as G
-import qualified Codec.Picture            as J
-import           Graphics.Htdp.Data.Image (Image (..))
-import           CSE230.Shift
+import Htdp.Data.Image
+import Htdp.Shape
+import Diagrams.Backend.Rasterific
+import qualified Diagrams.TwoD as D
+import Diagrams.Util ( (#) )
 
+overlay :: Image -> Image -> Image
+overlay = _
+  
 -------------------------------------------------------------------------------
 -- Save a 'Image' as a PNG file
 -------------------------------------------------------------------------------
+save :: FilePath -> Image -> IO ()
+save f raw = renderRasterific f dim img
+  where
+    img = raw
+          # D.centerXY
+          # D.padX 1.2
+          # D.padY 1.2
+          # D.bg bgCol
+    dim = D.dims2D (width raw) (height raw)
+
+{-
 save :: FilePath -> Image -> IO ()
 save f raw = G.exportPictureToPNG (siz, siz) bgCol f (scale pic)
   where 
@@ -20,30 +36,6 @@ save f raw = G.exportPictureToPNG (siz, siz) bgCol f (scale pic)
     siz    = succ . round $ dim
     img    = overlay raw (square dim solid bgCol)
     dim    = max (width raw) (height raw)
-
-{- 
-savePNG_vm :: FilePath -> Image -> IO ()
-savePNG_vm f raw = G.exportPictureToPNG (h, w) bgCol f pic
-  where 
-    i    = overlay raw (square dim solid bgCol)
-    pic  = G.Pictures (map (\(p, (x, y)) -> G.translate x y p) (shapes i))
-    w    = succ . round $ wi
-    h    = succ . round $ hi
-    wi   = width i
-    hi   = height i 
-    dim  = max (width raw) (height raw)
-
-savePNG2 :: FilePath -> Image -> IO ()
-savePNG2 f raw =
-  G.exportPictureToPNG (h, w) bgCol f pic
-  where
-    i    = overlay raw (square dim solid bgCol)
-    pic  = G.Pictures (map (\(p, (x, y)) -> G.translate x y p) (shapes i))
-    w    = succ . round $ wi
-    h    = succ . round $ hi
-    wi   = width i
-    hi   = height i
-    dim  = max (width raw) (height raw)
 -}
 
 -------------------------------------------------------------------------------
@@ -58,6 +50,7 @@ fgCol = blue
 bgCol :: Color
 bgCol = white
 
+{-
 -------------------------------------------------------------------------------
 compareBMP :: Int -> FilePath -> FilePath -> IO Bool
 -------------------------------------------------------------------------------
@@ -98,3 +91,4 @@ readImage path = do
                where i = J.convertRGB8 b   
                      h = J.imageHeight i 
                      w = J.imageWidth  i 
+-}

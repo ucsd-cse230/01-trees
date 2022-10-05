@@ -13,7 +13,7 @@ The assignment is in the following files that you will modify
 - [Doc.hs](/src/CSE230/Doc.hs)
 - [Directory.hs](/src/CSE230/Directory.hs)
 
-Finally, there are a`Test.hs` has some sample tests to be used  
+Finally, `Test.hs` has some sample tests to be used  
 to check your assignments before submitting.
 
 - [test/Test.hs](/test/Test.hs)
