@@ -18,7 +18,7 @@ circle :: Float -> Mode -> Color -> Image
 circle r mode color = D.circle r # applyMode mode color
 
 ellipse :: Float -> Float -> Mode -> Color -> Image
-ellipse w h mode color = D.ellipseXY (2 * w) (2 * h) # applyMode mode color
+ellipse w h mode color = D.ellipseXY (w / 2) (h / 2) # applyMode mode color
 
 line :: Float -> Float -> Color -> Image
 line x y color = D.strokeLine (D.fromVertices [0 ^& 0, x ^& y]) # D.lc color

@@ -23,7 +23,7 @@ save f raw = renderRasterific f dim img
           # D.padX 1.2
           # D.padY 1.2
           # D.bg bgCol
-    dim = D.dims2D (width raw) (height raw)
+    dim = D.dims2D (10 * width raw) (10 * height raw)
 
 {-
 save :: FilePath -> Image -> IO ()

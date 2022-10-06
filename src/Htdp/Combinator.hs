@@ -1,7 +1,11 @@
 module Htdp.Combinator
-  (
+  ( Alignment, low, mid, high
+  , overlay
+  , overlayAlign
   ) where
 
+import qualified Diagrams as D
+import Diagrams.Util ( (#) )
 import Htdp.Data.Image
 
 data Alignment = Low | Mid | High
@@ -12,10 +16,23 @@ mid = Mid
 high = High
 
 overlay :: Image -> Image -> Image
-overlay = _
+overlay = D.atop
 
 overlayAlign :: Alignment -> Alignment -> Image -> Image -> Image
-overlayAlign = _
+overlayAlign xAlignment yAlignment i1 i2 =
+  i1 # xAlignFunc xAlignment # yAlignFunc yAlignment
+  `D.atop`
+  i2 # xAlignFunc xAlignment # yAlignFunc yAlignment
+  where
+    xAlignFunc :: Alignment -> Image -> Image
+    xAlignFunc Low = D.alignL
+    xAlignFunc Mid = D.centerX
+    xAlignFunc High = D.alignR
+
+    yAlignFunc :: Alignment -> Image -> Image
+    yAlignFunc Low = D.alignB
+    yAlignFunc Mid = D.centerY
+    yAlignFunc High = D.alignT
 
 overlayOffset :: Image -> Float -> Float -> Image -> Image
 overlayOffset = _
