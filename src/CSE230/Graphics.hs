@@ -18,7 +18,7 @@ overlay = _
 save :: FilePath -> Image -> IO ()
 save f raw = renderRasterific f dim img
   where
-    img = raw
+    img = raw # D.showOrigin # D.showEnvelope
           # D.centerXY
           # D.padX 1.2
           # D.padY 1.2

@@ -9,6 +9,10 @@ import Diagrams.Util ( (#) )
 data Mode = Solid | Outline
   deriving Eq
 
+solid, outline :: Mode
+solid = Solid
+outline = Outline
+
 applyMode :: Mode -> Color -> Image -> Image
 applyMode Solid color image = image # D.fc color
                                     # D.lc color
@@ -21,19 +25,19 @@ ellipse :: Float -> Float -> Mode -> Color -> Image
 ellipse w h mode color = D.ellipseXY (w / 2) (h / 2) # applyMode mode color
 
 line :: Float -> Float -> Color -> Image
-line x y color = D.strokeLine (D.fromVertices [0 ^& 0, x ^& y]) # D.lc color
+line x y color = D.strokeLine (D.fromVertices [0 ^& 0, x ^& (-y)]) # D.lc color
 
 addLine :: Image -> Float -> Float -> Float -> Float -> Color -> Image
 addLine image x0 y0 x1 y1 color =
-  (D.strokeLocLine (D.fromVertices [x0 ^& y0, x1 ^& y1]) # D.lc color)
+  (D.strokeLocLine (D.fromVertices [x0 ^& (-y0), x1 ^& (-y1)]) # D.lc color)
   `D.atop`
-  image
+  (image # D.alignL # D.alignT)
 
 emptyImage :: Image
 emptyImage = mempty
 
 triangle :: Float -> Mode -> Color -> Image
-triangle = _
+triangle sideLength mode color = D.triangle sideLength # applyMode mode color
 
 rightTriangle :: Float -> Float -> Mode -> Color -> Image
 rightTriangle = _
