@@ -1,16 +1,9 @@
-module CSE230.Graphics
-  ( Image
-  , save
-  ) where
+module CSE230.Graphics where
 
-import Htdp.Data.Image
-import Htdp.Shape
+import Htdp
 import Diagrams.Backend.Rasterific
 import qualified Diagrams.TwoD as D
 import Diagrams.Util ( (#) )
-
-overlay :: Image -> Image -> Image
-overlay = _
   
 -------------------------------------------------------------------------------
 -- Save a 'Image' as a PNG file

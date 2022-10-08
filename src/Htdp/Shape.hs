@@ -1,9 +1,20 @@
-module Htdp.Shape where
+module Htdp.Shape
+  ( Mode, solid, outline
+  , circle
+  , ellipse
+  , line
+  , addLine
+  , emptyImage
+  , triangle
+  , square
+  , rectangle
+  , rhombus
+  ) where
 
 import Htdp.Data.Image ( Image, Color )
 import qualified Diagrams.TwoD as D
 import qualified Diagrams as D
-import Diagrams ( (^&) )
+import Diagrams ( (^&), (@@) )
 import Diagrams.Util ( (#) )
 
 data Mode = Solid | Outline
@@ -39,32 +50,32 @@ emptyImage = mempty
 triangle :: Float -> Mode -> Color -> Image
 triangle sideLength mode color = D.triangle sideLength # applyMode mode color
 
-rightTriangle :: Float -> Float -> Mode -> Color -> Image
-rightTriangle = _
+-- rightTriangle :: Float -> Float -> Mode -> Color -> Image
+-- rightTriangle = _
 
-isoscelesTriangle :: Float -> Float -> Mode -> Color -> Image
-isoscelesTriangle = _
+-- isoscelesTriangle :: Float -> Float -> Mode -> Color -> Image
+-- isoscelesTriangle = _
 
-triangleSSS :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleSSS = _
+-- triangleSSS :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleSSS = _
 
-triangleASS :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleASS = _
+-- triangleASS :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleASS = _
 
-triangleSAS :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleSAS = _
+-- triangleSAS :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleSAS = _
 
-triangleSSA :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleSSA = _
+-- triangleSSA :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleSSA = _
 
-triangleAAS :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleAAS = _
+-- triangleAAS :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleAAS = _
 
-triangleASA :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleASA = _
+-- triangleASA :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleASA = _
 
-triangleSAA :: Float -> Float -> Float -> Mode -> Color -> Image
-triangleSAA = _
+-- triangleSAA :: Float -> Float -> Float -> Mode -> Color -> Image
+-- triangleSAA = _
 
 square :: Float -> Mode -> Color -> Image
 square size mode color = D.square size # applyMode mode color
@@ -73,7 +84,14 @@ rectangle :: Float -> Float -> Mode -> Color -> Image
 rectangle w h mode color = D.rect w h # applyMode mode color
 
 rhombus :: Float -> Float -> Mode -> Color -> Image
-rhombus = _
+rhombus sideLength angle mode color = D.polygon polyOpts # applyMode mode color
+  where
+    verticalRadius = sideLength * D.cosA ((angle / 2) @@ D.deg)
+    horizontalRadius = sideLength * D.sinA ((angle / 2) @@ D.deg)
+    polyOpts = D.PolygonOpts
+      (D.PolyPolar (replicate 3 $ 90 @@ D.deg) [horizontalRadius, verticalRadius, horizontalRadius, verticalRadius])
+      D.NoOrient
+      (D.P $ D.V2 0 0)
 
-star :: Float -> Mode -> Color -> Image
-star = _
+-- star :: Float -> Mode -> Color -> Image
+-- star = _

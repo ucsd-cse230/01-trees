@@ -1,10 +1,23 @@
 module Htdp.Combinator
   ( Alignment, low, mid, high
   , overlay
-  , overlayOffset
   , overlayAlign
-  , placeImage
-  , placeImages
+  , overlayOffset
+  , overlayAlignOffset
+  , overlayXY
+  , underlay
+  , underlayAlign
+  , underlayOffset
+  , underlayXY
+  , underlayAlignOffset
+  , beside
+  , besides
+  , besideAlign
+  , besidesAlign
+  , above
+  , aboves
+  , aboveAlign
+  , abovesAlign
   ) where
 
 import qualified Diagrams as D
@@ -28,14 +41,14 @@ overlayOffset :: Image -> Float -> Float -> Image -> Image
 overlayOffset i1 x y i2 = overlayAlignOffset mid mid i1 x y i2
 
 xAlignFunc :: Alignment -> Image -> Image
-xAlignFunc Low = D.snugL
-xAlignFunc Mid = D.snugCenterX
-xAlignFunc High = D.snugR
+xAlignFunc Low = D.alignL
+xAlignFunc Mid = D.centerX
+xAlignFunc High = D.alignR
 
 yAlignFunc :: Alignment -> Image -> Image
-yAlignFunc Low = D.snugB
-yAlignFunc Mid = D.snugCenterY
-yAlignFunc High = D.snugT
+yAlignFunc Low = D.alignB
+yAlignFunc Mid = D.centerY
+yAlignFunc High = D.alignT
 
 overlayAlignOffset :: Alignment -> Alignment -> Image -> Float -> Float -> Image -> Image
 overlayAlignOffset xAlignment yAlignment i1 x y i2 = newImage # D.snugCenterXY
@@ -96,18 +109,24 @@ aboveAlign xAlignment i1 i2 =
 abovesAlign :: Alignment -> [Image] -> Image
 abovesAlign xAlignment is = aboves (xAlignFunc xAlignment <$> is)
 
+-- TODO: figure out how to do proper cropping/placeImage functions
+
 placeImage :: Image -> Float -> Float -> Image -> Image
-placeImage image x y scene = newImage # D.snugCenterXY
-  where
-    newImage = image
-               `D.atop`
-               scene # D.alignTL # D.moveOriginBy (D.V2 x (-y))
+placeImage image x y scene = placeImageAlign image x y mid mid scene
               
 placeImages :: [Image] -> [(Float, Float)] -> Image -> Image
 placeImages images coords scene = foldl (\tempScene (i, (x, y)) -> placeImage i x y tempScene) scene (zip images coords)
 
 placeImageAlign :: Image -> Float -> Float -> Alignment -> Alignment -> Image -> Image
-placeImageAlign = _
+placeImageAlign image x y xAlignment yAlignment scene = newImage # D.snugCenterXY -- # D.clipTo (D.boundingRect scene)
+  where
+    newImage = image # xAlignFunc xAlignment # yAlignFunc yAlignment # D.translateX x # D.translateY (-y)
+               `D.atop`
+               scene # D.alignTL
 
 placeImagesAlign :: [Image] -> [(Float, Float)] -> Alignment -> Alignment -> Image -> Image
-placeImagesAlign = _
+placeImagesAlign images coords xAlignment yAlignment scene = newImage # D.snugCenterXY
+  where
+    toPoint (x, y) = D.P $ D.V2 x (-y)
+    placedImages = zip (toPoint <$> coords) (xAlignFunc xAlignment . yAlignFunc yAlignment <$> images)
+    newImage = D.position $ placedImages <> [(D.P $ D.V2 0 0, scene # D.alignTL)]

@@ -18,9 +18,6 @@ Library
                       CSE230.Shapes,
                       CSE230.Doc,
                       CSE230.Directory,
-                      Htdp.Shape,
-                      Htdp.Combinator,
-                      Htdp.Data.Image,
                       Htdp
 
   Default-Extensions: OverloadedStrings
