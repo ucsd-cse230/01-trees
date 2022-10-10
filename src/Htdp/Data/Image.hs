@@ -48,7 +48,7 @@ rotate = _
 
 type Color = Colour Double
 
-makeColor :: Float -> Float -> Float -> Float -> Color	 
+makeColor :: Float -> Float -> Float -> Float -> Color
 makeColor = _
 
 makeColorI :: Int -> Int -> Int -> Int -> Color
@@ -57,7 +57,7 @@ makeColorI = _
 rgbaOfColor :: Color -> (Float, Float, Float, Float)
 rgbaOfColor = _
 
-mixColors :: Float -> Float -> Color -> Color -> Color	
+mixColors :: Float -> Float -> Color -> Color -> Color
 mixColors = _
 
 addColors :: Color -> Color -> Color

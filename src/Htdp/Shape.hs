@@ -16,6 +16,7 @@ import qualified Diagrams.TwoD as D
 import qualified Diagrams as D
 import Diagrams ( (^&), (@@) )
 import Diagrams.Util ( (#) )
+import Data.Colour ( transparent )
 
 data Mode = Solid | Outline
   deriving Eq
@@ -26,7 +27,7 @@ outline = Outline
 
 applyMode :: Mode -> Color -> Image -> Image
 applyMode Solid color image = image # D.fc color
-                                    # D.lc color
+                                    # D.lcA transparent
 applyMode Outline color image = image # D.lc color
 
 circle :: Float -> Mode -> Color -> Image

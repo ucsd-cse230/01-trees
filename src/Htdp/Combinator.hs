@@ -51,7 +51,7 @@ yAlignFunc Mid = D.centerY
 yAlignFunc High = D.alignT
 
 overlayAlignOffset :: Alignment -> Alignment -> Image -> Float -> Float -> Image -> Image
-overlayAlignOffset xAlignment yAlignment i1 x y i2 = newImage # D.snugCenterXY
+overlayAlignOffset xAlignment yAlignment i1 x y i2 = newImage # D.centerXY
   where
     newImage = i1 # xAlignFunc xAlignment # yAlignFunc yAlignment
               `D.atop`
@@ -67,66 +67,59 @@ underlayAlign :: Alignment -> Alignment -> Image -> Image -> Image
 underlayAlign xAlignment yAlignment i1 i2 = overlayAlign xAlignment yAlignment i2 i1
 
 underlayOffset :: Image -> Float -> Float -> Image -> Image
-underlayOffset i1 x y i2 =
-  i2 # D.translateX (-x) # D.translateY (-y)
-  `D.atop`
-  i1
+underlayOffset i1 x y i2 = overlayOffset i2 (-x) (-y) i1
 
 underlayXY :: Image -> Float -> Float -> Image -> Image
 underlayXY i1 x y i2 = underlayAlignOffset low high i1 x y i2
 
 underlayAlignOffset :: Alignment -> Alignment -> Image -> Float -> Float -> Image -> Image
-underlayAlignOffset xAlignment yAlignment i1 x y i2 =
-  i2 # xAlignFunc xAlignment # yAlignFunc yAlignment # D.translateX (-x) # D.translateY (-y)
-  `D.atop`
-  i1 # xAlignFunc xAlignment # yAlignFunc yAlignment
+underlayAlignOffset xAlignment yAlignment i1 x y i2 = overlayAlignOffset xAlignment yAlignment i2 (-x) (-y) i1
+  -- i2 # xAlignFunc xAlignment # yAlignFunc yAlignment # D.translateX (-x) # D.translateY (-y)
+  -- `D.atop`
+  -- i1 # xAlignFunc xAlignment # yAlignFunc yAlignment
 
 beside :: Image -> Image -> Image
-beside = (D.|||)
+beside i1 i2 = (i1 D.||| i2) # D.centerXY
 
 besides :: [Image] -> Image
-besides = D.hcat
+besides is = D.hcat is # D.centerXY
 
 besideAlign :: Alignment -> Image -> Image -> Image
-besideAlign yAlignment i1 i2 = (i1 # yAlignFunc yAlignment) D.||| (i2 # yAlignFunc yAlignment)
-
+besideAlign yAlignment i1 i2 = beside (i1 # yAlignFunc yAlignment) (i2 # yAlignFunc yAlignment)
 
 besidesAlign :: Alignment -> [Image] -> Image
 besidesAlign yAlignment is = besides (yAlignFunc yAlignment <$> is)
 
 above :: Image -> Image -> Image
-above = (D.===)
+above i1 i2 = (i1 D.=== i2) # D.centerXY
 
 aboves :: [Image] -> Image
-aboves = D.vcat
+aboves is = D.vcat is # D.centerXY
 
 aboveAlign :: Alignment -> Image -> Image -> Image
-aboveAlign xAlignment i1 i2 =
-  (i1 # xAlignFunc xAlignment)
-  D.===
-  (i2 # xAlignFunc xAlignment)
+aboveAlign xAlignment i1 i2 = above (i1 # xAlignFunc xAlignment) (i2 # xAlignFunc xAlignment)
 
 abovesAlign :: Alignment -> [Image] -> Image
 abovesAlign xAlignment is = aboves (xAlignFunc xAlignment <$> is)
 
 -- TODO: figure out how to do proper cropping/placeImage functions
 
-placeImage :: Image -> Float -> Float -> Image -> Image
-placeImage image x y scene = placeImageAlign image x y mid mid scene
-              
-placeImages :: [Image] -> [(Float, Float)] -> Image -> Image
-placeImages images coords scene = foldl (\tempScene (i, (x, y)) -> placeImage i x y tempScene) scene (zip images coords)
+-- placeImage :: Image -> Float -> Float -> Image -> Image
+-- placeImage image x y scene = placeImageAlign image x y mid mid scene
 
-placeImageAlign :: Image -> Float -> Float -> Alignment -> Alignment -> Image -> Image
-placeImageAlign image x y xAlignment yAlignment scene = newImage # D.snugCenterXY -- # D.clipTo (D.boundingRect scene)
-  where
-    newImage = image # xAlignFunc xAlignment # yAlignFunc yAlignment # D.translateX x # D.translateY (-y)
-               `D.atop`
-               scene # D.alignTL
+-- placeImages :: [Image] -> [(Float, Float)] -> Image -> Image
+-- placeImages images coords scene = foldl (\tempScene (i, (x, y)) -> placeImage i x y tempScene) scene (zip images coords)
 
-placeImagesAlign :: [Image] -> [(Float, Float)] -> Alignment -> Alignment -> Image -> Image
-placeImagesAlign images coords xAlignment yAlignment scene = newImage # D.snugCenterXY
-  where
-    toPoint (x, y) = D.P $ D.V2 x (-y)
-    placedImages = zip (toPoint <$> coords) (xAlignFunc xAlignment . yAlignFunc yAlignment <$> images)
-    newImage = D.position $ placedImages <> [(D.P $ D.V2 0 0, scene # D.alignTL)]
+-- placeImageAlign :: Image -> Float -> Float -> Alignment -> Alignment -> Image -> Image
+-- placeImageAlign image x y xAlignment yAlignment scene = newImage # D.snugCenterXY -- # D.clipTo (D.boundingRect scene)
+--   where
+--     newImage = image # xAlignFunc xAlignment # yAlignFunc yAlignment # D.translateX x # D.translateY (-y)
+--                `D.atop`
+--                scene # D.alignTL
+
+-- placeImagesAlign :: [Image] -> [(Float, Float)] -> Alignment -> Alignment -> Image -> Image
+-- placeImagesAlign images coords xAlignment yAlignment scene = newImage # D.snugCenterXY
+--   where
+--     toPoint (x, y) = D.P $ D.V2 x (-y)
+--     placedImages = zip (toPoint <$> coords) (xAlignFunc xAlignment . yAlignFunc yAlignment <$> images)
+--     newImage = D.position $ placedImages <> [(D.P $ D.V2 0 0, scene # D.alignTL)]
