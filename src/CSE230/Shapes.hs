@@ -1,29 +1,30 @@
 module CSE230.Shapes where
 
-import CSE230.List 
+import CSE230.List
 import CSE230.Graphics
+import Htdp
 
 -------------------------------------------------------------------------------
 main :: IO ()
 -------------------------------------------------------------------------------
-main = do 
+main = do
   mkRainbow
-  mkChess1 
-  mkChess2 
+  mkChess1
+  mkChess2
   mkTriangle1
   mkTriangle2
   mkCarpet
 
 -------------------------------------------------------------------------------
--- | Rainbow with 'map' 
+-- | Rainbow with 'map'
 -------------------------------------------------------------------------------
 mkRainbow :: IO ()
 mkRainbow = save "img/rainbow.png" rainbow
 
 rainbow :: Image
 rainbow = foldr1 f xs
-  where 
-    xs  = map g [1..7] 
+  where
+    xs  = map g [1..7]
     f   = error "fill this in"
     g   = error "fill this in"
 
@@ -35,8 +36,8 @@ mkChess1 :: IO ()
 mkChess1   = save "img/chess1.png"   chessBoard1
 
 chessBoard1 :: Image
-chessBoard1 = aboves (clone 4 row) 
-  where 
+chessBoard1 = aboves (clone 4 row)
+  where
     row     = besides (clone 4 gridSquare)
 
 gridSquare :: Image
@@ -52,11 +53,11 @@ gridSquare = aboves [ besides [ whSq, blSq ]
 mkChess2 :: IO ()
 mkChess2   = save "img/chess2.png"   chessBoard2
 
-chessBoard2 :: Image 
+chessBoard2 :: Image
 chessBoard2 = iter 2 f base
   where
     f       = error "fill this in"
-    base    = gridSquare 
+    base    = gridSquare
 
 
 -------------------------------------------------------------------------------
@@ -65,7 +66,7 @@ chessBoard2 = iter 2 f base
 mkTriangle1 :: IO ()
 mkTriangle1 = save "img/triangle1.png" sierpinskiTriangle1
 
-sierpinskiTriangle1 :: Image 
+sierpinskiTriangle1 :: Image
 sierpinskiTriangle1 = triRec 8
 
 triRec :: Int -> Image
@@ -85,7 +86,7 @@ sierpinskiTriangle2 :: Image
 sierpinskiTriangle2 = iter 8 f base
  where
    f               = error "fill this in"
-   base            = blueTriangle 
+   base            = blueTriangle
 
 
 -------------------------------------------------------------------------------
@@ -95,11 +96,10 @@ mkCarpet :: IO ()
 mkCarpet   = save "img/carpet.png" sierpinskiCarpet
 
 sierpinskiCarpet :: Image
-sierpinskiCarpet = iter 4 f base 
-  where 
+sierpinskiCarpet = iter 4 f base
+  where
     f            = error "fill this in"
     base         = blueSquare
 
 blueSquare :: Image
-blueSquare =  square 4 solid fgCol  
-
+blueSquare =  square 4 solid fgCol
