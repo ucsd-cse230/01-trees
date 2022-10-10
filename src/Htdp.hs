@@ -7,20 +7,20 @@ module Htdp
   , Color
   , makeColor
   , makeColorI
-  , rgbaOfColor
+  -- , rgbaOfColor
   , mixColors
   , addColors
-  , dim
-  , bright
-  , light
-  , dark
-  , withRed
-  , withGreen
-  , withBlue
-  , withAlpha
-  , greyN
+  -- , dim
+  -- , bright
+  -- , light
+  -- , dark
+  -- , withRed
+  -- , withGreen
+  -- , withBlue
+  -- , withAlpha
+  -- , greyN
 
-  , black, white, red, green, blue, yellow, cyan, magenta, rose, violet, azure
+  , black, white, red, green, blue, yellow, cyan, magenta, violet, azure
   , aquamarine, chartreuse, orange
 
   , Mode, solid, outline

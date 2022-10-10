@@ -4,6 +4,7 @@ import Htdp
 import Diagrams.Backend.Rasterific
 import qualified Diagrams.TwoD as D
 import Diagrams.Util ( (#) )
+import qualified Diagrams.Prelude as D ( white )
 
 -------------------------------------------------------------------------------
 -- Save a 'Image' as a PNG file
@@ -13,7 +14,7 @@ save f raw = renderRasterific f dim img
   where
     img = raw
           # D.centerXY
-          # D.bg bgCol
+          # D.bg D.white
     dim = D.dims2D (scale * width raw) (scale * height raw)
     scale =
       if width raw < 100 && height raw < 100
