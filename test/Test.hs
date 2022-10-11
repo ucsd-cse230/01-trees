@@ -34,7 +34,7 @@ probList sc = testGroup "List" [
   scoreTest ((\_ -> maximum 99 []), (), 99, 1, "maximum-1"),
   scoreTest ((\_ -> maximum 99 [90, 100, 200, 52]), (), 200, 1, "maximum-2"),
   scoreTest ((\_ -> intersp '|' "chewbacca"), (), "|c|h|e|w|b|a|c|c|a|", 1, "intersp-1"),
-  scoreTest ((\_ -> intersp "yo!" ["which", "way", "is", "the", "park"]), (), ["yo!","which","yo!","way","yo!","is","yo!","the","yo!","park","yo!"], 1, "intersp-1"),
+  scoreTest ((\_ -> intersp "yo!" ["which", "way", "is", "the", "park"]), (), ["yo!","which","yo!","way","yo!","is","yo!","the","yo!","park","yo!"], 1, "intersp-2"),
   scoreTest ((\_ -> iter 10 (\x -> 2 * x) 1 ), (), 1024, 3, "iter-1")
   ]
   where
