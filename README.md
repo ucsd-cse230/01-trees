@@ -407,6 +407,12 @@ src
 │   ├── Graphics.hs
 │   ├── List.hs
 │   └── Shapes.hs
+├── Htdp
+│   ├── Combinator.hs
+│   ├── Data
+│   │   └── Image.hs
+│   ├── README.md
+│   └── Shape.hs
 └── Main.hs
 ```
 
@@ -427,6 +433,9 @@ src/CSE230/Doc.hs
 src/CSE230/Graphics.hs
 src/CSE230/List.hs
 src/CSE230/Shapes.hs
+src/Htdp/Combinator.hs
+src/Htdp/Data/Image.hs
+src/Htdp/Shape.hs
 src/Main.hs
 ```
 
@@ -445,15 +454,19 @@ For example, the files in the `src` directory can be represented as:
 ```haskell
 srcDir :: Dir FilePath
 srcDir = Sub "src"
-           [ Sub "CSE230"
-               [ Fil "Directory.hs"
-               , Fil "Doc.hs"
-               , Fil "Graphics.hs"
-               , Fil "List.hs"
-               , Fil "Shapes.hs"
-               ]
-            , Fil "Main.hs"
-            ]
+         [ Sub "CSE230" [ Fil "Directory.hs"
+                        , Fil "Doc.hs"
+                        , Fil "Graphics.hs"
+                        , Fil "List.hs"
+                        , Fil "Shapes.hs"
+                        ]
+         , Sub "Htdp" [ Fil "Combinator.hs"
+                      , Sub "Data" [ Fil "Image.hs" ]
+                      , Fil "README.md"
+                      , Fil "Shape.hs"
+                      ]
+         , Fil "Main.hs"
+         ]
 ```
 
 ### `dirDoc`
@@ -479,13 +492,22 @@ src
 │   ├── Graphics.hs
 │   ├── List.hs
 │   └── Shapes.hs
+├── Htdp
+│   ├── Combinator.hs
+│   ├── Data
+│   │   └── Image.hs
+│   ├── README.md
+│   └── Shape.hs
+├── Htdp.hs
 └── Main.hs
 ```
 
 ```haskell
 >>> dirDoc example
 .
+├── COLLABORATORS.md
 ├── LICENSE
+├── Makefile
 ├── README.md
 ├── cse230-tree.cabal
 ├── out
@@ -502,6 +524,13 @@ src
 │   │   ├── Graphics.hs
 │   │   ├── List.hs
 │   │   └── Shapes.hs
+│   ├── Htdp
+│   │   ├── Combinator.hs
+│   │   ├── Data
+│   │   │   └── Image.hs
+│   │   ├── README.md
+│   │   └── Shape.hs
+│   ├── Htdp.hs
 │   └── Main.hs
 └── stack.yaml
 ```
@@ -516,7 +545,7 @@ When you are done, you should see the following behavior:
 
 ```haskell
 >>> allFiles example
-["LICENSE","README.md","cse230-tree.cabal","carpet.png","chess1.png","chess2.png","rainbow.png","triangle1.png","triangle2.png","Main.hs","Directory.hs","Doc.hs","Graphics.hs","List.hs","Shapes.hs","stack.yaml"]
+["COLLABORATORS.md","LICENSE","Makefile","README.md","cse230-tree.cabal","carpet.png","chess1.png","chess2.png","rainbow.png","triangle1.png","triangle2.png","Directory.hs","Doc.hs","Graphics.hs","List.hs","Shapes.hs","Combinator.hs","Image.hs","README.md","Shape.hs","Htdp.hs","Main.hs""stack.yaml"]
 ```
 
 
@@ -530,7 +559,7 @@ When you are done, you should see the following behavior:
 
 ```haskell
 >>> allDirs example
-[".","out","src","CSE230"]
+[".","out","src","CSE230","Htdp","Data"]
 ```
 
 
@@ -545,7 +574,7 @@ When you are done, you should see the following behavior:
 
 ```haskell
 >>> findFiles ".hs" example
-["./src/CSE230/Directory.hs","./src/CSE230/Doc.hs","./src/CSE230/Graphics.hs","./src/CSE230/List.hs","./src/CSE230/Shapes.hs","./src/Main.hs"]
+["./src/CSE230/Directory.hs","./src/CSE230/Doc.hs","./src/CSE230/Graphics.hs","./src/CSE230/List.hs","./src/CSE230/Shapes.hs","./src/CSE230/Directory.hs","./src/Htdp/Combinator.hs","./src/htdp/Data/Image.hs","./src/Htdp/README.md","./src/htdp/Shape.hs","./src/Htdp.hs","./src/Main.hs"]
 
 ```
 
@@ -563,8 +592,10 @@ in your `src/` directory!)
 
 ```haskell
 >>> build "src"
-Sub "src" [Sub "CSE230" [Fil "Directory.hs", Fil "Doc.hs", Fil "Graphics.hs", Fil "List.hs", Fil "Shapes.hs"],Fil "Main.hs"]
+Sub "src" [Sub "CSE230" [Fil "Directory.hs", Fil "Doc.hs", Fil "Graphics.hs", Fil "List.hs", Fil "Shapes.hs"], Sub "Htdp" [Fil "Combinator.hs", Sub "Data" [Fil "Image.hs"], Fil "README.md", Fil "Shape.hs"], Fil "Htdp.hs", Fil "Main.hs"]
 ```
+
+Notice that the directories and files are listed in lexicographic order!
 
 Finally, at this point, `stack install` should build and
 install a standalone executable `htree` that you can then
