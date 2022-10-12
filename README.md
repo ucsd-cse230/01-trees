@@ -80,6 +80,9 @@ with your group members, but **each person must submit on their own**.
 
 ## Problem 1: Lists
 
+In this problem, you can use only the following two library functions **on lists**: `(++)` and `length`.
+(Feel free to use any library function that does not operate on lists.)
+
 ### Cloning
 
 Fill in the implementation of `clone` such that `clone n x` returns
@@ -181,6 +184,11 @@ When you are done you should get the following behavior:
 ```
 
 ## Problem 2: Shapes
+
+From this problem on, you are allowed to use any library functions you want.
+You can also use functions you have implemented in previous problems.
+However, please do not change the `import` statements at the top of the file:
+we have already imported all the functions you need.
 
 ### Rainbow
 
@@ -468,6 +476,9 @@ srcDir = Sub "src"
          , Fil "Main.hs"
          ]
 ```
+
+**HINT:** Take a look at the functions that `Directory.hs` imports from `System.FilePath` and `System.Directory`;
+they will help you with some tasks in this problem.
 
 ### `dirDoc`
 
