@@ -1,4 +1,4 @@
-STACK       = stack --allow-different-user
+STACK       = stack
 
 .PHONY: all test build clean distclean turnin
 
