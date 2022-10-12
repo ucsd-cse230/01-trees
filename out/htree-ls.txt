@@ -5,5 +5,12 @@ src
 │   ├── Graphics.hs
 │   ├── List.hs
 │   └── Shapes.hs
+├── Htdp
+│   ├── Combinator.hs
+│   ├── Data
+│   │   └── Image.hs
+│   ├── README.md
+│   └── Shape.hs
+├── Htdp.hs
 └── Main.hs
 

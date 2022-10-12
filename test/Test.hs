@@ -34,7 +34,7 @@ probList sc = testGroup "List" [
   scoreTest ((\_ -> maximum 99 []), (), 99, 1, "maximum-1"),
   scoreTest ((\_ -> maximum 99 [90, 100, 200, 52]), (), 200, 1, "maximum-2"),
   scoreTest ((\_ -> intersp '|' "chewbacca"), (), "|c|h|e|w|b|a|c|c|a|", 1, "intersp-1"),
-  scoreTest ((\_ -> intersp "yo!" ["which", "way", "is", "the", "park"]), (), ["yo!","which","yo!","way","yo!","is","yo!","the","yo!","park","yo!"], 1, "maximum-1"),
+  scoreTest ((\_ -> intersp "yo!" ["which", "way", "is", "the", "park"]), (), ["yo!","which","yo!","way","yo!","is","yo!","the","yo!","park","yo!"], 1, "intersp-2"),
   scoreTest ((\_ -> iter 10 (\x -> 2 * x) 1 ), (), 1024, 3, "iter-1")
   ]
   where
@@ -92,18 +92,18 @@ probDir sc = testGroup "Directory" [
   scoreTest ((\_ -> allFiles example), (), fiEx, 2, "allFiles-1"),
   scoreTest ((\_ -> allDirs example), (), diEx, 2, "allDirs-1"),
   scoreTest ((\_ -> findFiles ".hs" example), (), hsEx, 4, "findFiles-1"),
-  scoreTestI ((\_ -> build "src"), (), srcDir, 1, "maximum-1")
+  scoreTestI ((\_ -> build "src"), (), srcDir, 1, "build-1")
   ]
   where
     scoreTest :: (Show b, Eq b) => (a -> b, a, b, Int, String) -> TestTree
     scoreTest (f, x, r, n, msg) = scoreTest' sc (return . f, x, r, n, msg)
     scoreTestI :: (Show b, Eq b) => (a -> IO b, a, b, Int, String) -> TestTree
     scoreTestI (f, x, r, n, msg) = scoreTest' sc (f, x, r, n, msg)
-    ddEx = [".","\9500\9472\9472 LICENSE","\9500\9472\9472 README.md","\9500\9472\9472 cse230-tree.cabal","\9500\9472\9472 out","\9474   \9500\9472\9472 carpet.png","\9474   \9500\9472\9472 chess1.png","\9474   \9500\9472\9472 chess2.png","\9474   \9500\9472\9472 rainbow.png","\9474   \9500\9472\9472 triangle1.png","\9474   \9492\9472\9472 triangle2.png","\9500\9472\9472 src","\9474   \9500\9472\9472 CSE230","\9474   \9474   \9500\9472\9472 Directory.hs","\9474   \9474   \9500\9472\9472 Doc.hs","\9474   \9474   \9500\9472\9472 Graphics.hs","\9474   \9474   \9500\9472\9472 List.hs","\9474   \9474   \9492\9472\9472 Shapes.hs","\9474   \9492\9472\9472 Main.hs","\9492\9472\9472 stack.yaml"]
-    ddSrc = ["src","\9500\9472\9472 CSE230","\9474   \9500\9472\9472 Directory.hs","\9474   \9500\9472\9472 Doc.hs","\9474   \9500\9472\9472 Graphics.hs","\9474   \9500\9472\9472 List.hs","\9474   \9492\9472\9472 Shapes.hs","\9492\9472\9472 Main.hs"]
-    fiEx = ["LICENSE","README.md","cse230-tree.cabal","carpet.png","chess1.png","chess2.png","rainbow.png","triangle1.png","triangle2.png","Directory.hs","Doc.hs","Graphics.hs","List.hs","Shapes.hs","Main.hs","stack.yaml"]
-    diEx  = [".","out","src","CSE230"]
-    hsEx  = ["./src/CSE230/Directory.hs","./src/CSE230/Doc.hs","./src/CSE230/Graphics.hs","./src/CSE230/List.hs","./src/CSE230/Shapes.hs","./src/Main.hs"]
+    ddEx = [ ".","\9500\9472\9472 COLLABORATORS.md","\9500\9472\9472 LICENSE","\9500\9472\9472 Makefile","\9500\9472\9472 README.md","\9500\9472\9472 cse230-tree.cabal","\9500\9472\9472 out","\9474   \9500\9472\9472 carpet.png","\9474   \9500\9472\9472 chess1.png","\9474   \9500\9472\9472 chess2.png","\9474   \9500\9472\9472 rainbow.png","\9474   \9500\9472\9472 triangle1.png","\9474   \9492\9472\9472 triangle2.png","\9500\9472\9472 src","\9474   \9500\9472\9472 CSE230","\9474   \9474   \9500\9472\9472 Directory.hs","\9474   \9474   \9500\9472\9472 Doc.hs","\9474   \9474   \9500\9472\9472 Graphics.hs","\9474   \9474   \9500\9472\9472 List.hs","\9474   \9474   \9492\9472\9472 Shapes.hs","\9474   \9500\9472\9472 Htdp","\9474   \9474   \9500\9472\9472 Combinator.hs","\9474   \9474   \9500\9472\9472 Data","\9474   \9474   \9474   \9492\9472\9472 Image.hs","\9474   \9474   \9500\9472\9472 README.md","\9474   \9474   \9492\9472\9472 Shape.hs","\9474   \9500\9472\9472 Htdp.hs","\9474   \9492\9472\9472 Main.hs","\9492\9472\9472 stack.yaml"]
+    ddSrc = ["src","\9500\9472\9472 CSE230","\9474   \9500\9472\9472 Directory.hs","\9474   \9500\9472\9472 Doc.hs","\9474   \9500\9472\9472 Graphics.hs","\9474   \9500\9472\9472 List.hs","\9474   \9492\9472\9472 Shapes.hs","\9500\9472\9472 Htdp","\9474   \9500\9472\9472 Combinator.hs","\9474   \9500\9472\9472 Data","\9474   \9474   \9492\9472\9472 Image.hs","\9474   \9500\9472\9472 README.md","\9474   \9492\9472\9472 Shape.hs","\9500\9472\9472 Htdp.hs","\9492\9472\9472 Main.hs"]
+    fiEx = ["COLLABORATORS.md","LICENSE","Makefile","README.md","cse230-tree.cabal","carpet.png","chess1.png","chess2.png","rainbow.png","triangle1.png","triangle2.png","Directory.hs","Doc.hs","Graphics.hs","List.hs","Shapes.hs","Combinator.hs","Image.hs","README.md","Shape.hs","Htdp.hs","Main.hs","stack.yaml"]
+    diEx  = [".","out","src","CSE230","Htdp","Data"]
+    hsEx  = ["./src/CSE230/Directory.hs","./src/CSE230/Doc.hs","./src/CSE230/Graphics.hs","./src/CSE230/List.hs","./src/CSE230/Shapes.hs","./src/Htdp/Combinator.hs","./src/Htdp/Data/Image.hs","./src/Htdp/Shape.hs","./src/Htdp.hs","./src/Main.hs"]
 
 probHtree :: Score -> TestTree
 probHtree sc = testGroup "htree"
