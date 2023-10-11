@@ -1,4 +1,4 @@
-# Assignment 1: Recursion, Datatypes and Higher Order Functions (400 points)
+# Assignment 1: Recursion, Datatypes and Higher Order Functions (350 points)
 
 ## Overview
 
@@ -78,9 +78,12 @@ $ make turnin
 If you are working in a group, make sure to update the file `COLLABORATORS.md`
 with your group members, but **each person must submit on their own**.
 
-## Problem 1: Lists
+## Problem 1: Lists (57 points)
 
-### Cloning
+In this problem, you can use only the following two library functions **on lists**: `(++)` and `length`.
+(Feel free to use any library function that does not operate on lists.)
+
+### Cloning (5 points)
 
 Fill in the implementation of `clone` such that `clone n x` returns
 a list of `n` copies of `x`. When you are done, you should see the
@@ -94,7 +97,7 @@ following behavior:
 ["cat","cat","cat"]
 ```
 
-### Padding
+### Padding (14 points)
 
 Fill in the implementation of `pad` such that `pad dir n x ys`
 "pads" the list `ys` with as many copies of `x` as needed to make
@@ -118,7 +121,7 @@ When you are done, you should see the following behavior:
 [1,2,3,4,5]
 ```
 
-### Sub-Sequence
+### Sub-Sequence (10 points)
 
 Fill in the definition of `isSubsequence` such that
 `isSubSequence s1 s2` returns True if `s1` can be
@@ -134,7 +137,7 @@ False
 True
 ```
 
-### Maximum
+### Maximum (8 points)
 
 Fill in the implementation of `maximum` so that `maximum d xs`
 returns the largest of `d:xs`.
@@ -149,7 +152,7 @@ When you are done, you should see the following behavior:
 200
 ```
 
-### Intersperse
+### Intersperse (8 points)
 
 Fill in the definition of `intersp` such that
 `intersp s [x1,x2,...,xn]` returns the list
@@ -165,7 +168,7 @@ When you are done, you should see the following behavior:
 ["yo!","which","yo!","way","yo!","is","yo!","the","yo!","park","yo!"]
 ```
 
-### `iter`
+### `iter` (12 points)
 
 Fill in the definition of `iter` such that `iter n f x`
 returns the result of calling `f` on `x` exactly `n` times, e.g.
@@ -180,9 +183,14 @@ When you are done you should get the following behavior:
 1024
 ```
 
-## Problem 2: Shapes
+## Problem 2: Shapes (105 points)
 
-### Rainbow
+From this problem on, you are allowed to use any library functions you want.
+You can also use functions you have implemented in previous problems.
+However, please do not change the `import` statements at the top of the file:
+we have already imported all the functions you need.
+
+### Rainbow (15 points)
 
 Fill in the implementation of `rainbow` so that when you
 are done, running
@@ -198,7 +206,7 @@ creates a file `img/rainbow.png` that looks identical to
 **HINT:** Read the documentation for `overlay` and `circle` from
 the [`Graphics.Htdp` library](http://hackage.haskell.org/package/htdp-image-1.1.0.0/docs/Graphics-Htdp.html).
 
-### ChessBoard using `iter`
+### ChessBoard using `iter` (20 points)
 
 Fill in the implementation of `chessBoard2` so that when you
 are done, running
@@ -213,7 +221,7 @@ creates a file `img/chess2.png` that looks identical to
 
 **HINT:** Make sure you understand the API in `chessBoard1`.
 
-### Triangle using recursion
+### Triangle using recursion (15 points)
 
 Fill in the implementation of `triRec` so that when you
 are done, running
@@ -228,7 +236,7 @@ creates a file `img/triangle1.png` that looks identical to
 
 **HINT:** You may find the `Graphics.Htdp` functions `above` and `beside` useful.
 
-### Triangle using `iter`
+### Triangle using `iter` (25 points)
 
 Fill in the implementation of `sierpinskiTriangle2` so that when you
 are done, running
@@ -243,7 +251,7 @@ creates a file `img/triangle2.png` that looks identical to
 
 **HINT:** Make sure you understand the relation between `iter` and recursion.
 
-### Carpet with `iter`
+### Carpet with `iter` (30 points)
 
 Fill in the implementation of `sierpinskiCarpet` so that when you
 are done, running
@@ -256,7 +264,7 @@ creates a file `img/carpet.png` that looks identical to
 
 ![Chess Board](/out/carpet.png)
 
-## Problem 3: Documents
+## Problem 3: Documents (84 points)
 
 For this problem you will write a simple document layout engine, that allows the pretty printing of nested documents.
 
@@ -280,7 +288,7 @@ We have also provided implementations of methods for computing
 * the `height` of a document (the number of lines)
 * the `width` of a document (the maximum number of characters in a line)
 
-### Vertical Concatenation aligned at Left
+### Vertical Concatenation aligned at Left (20 points)
 
 Fill in the implementation of `vcatL` such that `vcatL d1 d2`
 *vertically concatenates* the documents `d1` and `d2` aligning
@@ -295,7 +303,7 @@ horse
 mongoose
 ```
 
-### Vertical Concatenation aligned at Right
+### Vertical Concatenation aligned at Right (22 points)
 
 Fill in the implementation of `vcatR` such that `vcatR d1 d2`
 *vertically concatenates* the documents `d1` and `d2` aligning
@@ -312,7 +320,7 @@ mongoose
 
 
 
-### Horizontal Concatenation aligned at Top
+### Horizontal Concatenation aligned at Top (22 points)
 
 Fill in the implementation of `hcatT` such that `hcatT d1 d2`
 *horizontally concatenates* the documents `d1` and `d2` aligning
@@ -358,7 +366,7 @@ aaaaa
 ```
 
 
-### Horizontal Concatenation aligned at Bottom
+### Horizontal Concatenation aligned at Bottom (20 points)
 
 Fill in the implementation of `hcatB` such that `hcatB d1 d2`
 *horizontally concatenates* the documents `d1` and `d2` aligning
@@ -383,7 +391,7 @@ aaa  b
 aaaaabbb
 ```
 
-## Problem 4: `htree`
+## Problem 4: `htree` (104 points)
 
 Finally, we will use `Doc` to build a command-line tool
 called `htree` which does two tasks.
@@ -469,7 +477,10 @@ srcDir = Sub "src"
          ]
 ```
 
-### `dirDoc`
+**HINT:** Take a look at the functions that `Directory.hs` imports from `System.FilePath` and `System.Directory`;
+they will help you with some tasks in this problem.
+
+### `dirDoc` (36 points)
 
 Fill in the implementation of `dirDoc` that converts a `Dir FilePath`,
 i.e. a directory where each name is a `FilePath` (i.e. `String`) into
@@ -535,7 +546,7 @@ src
 └── stack.yaml
 ```
 
-### `allFiles`
+### `allFiles` (10 points)
 
 Understand and use `foldDir` to fill in the implementation
 of `allFiles dir` which returns a list of *all the files*
@@ -549,7 +560,7 @@ When you are done, you should see the following behavior:
 ```
 
 
-### `allDirs`
+### `allDirs` (10 points)
 
 Understand and use `foldDir` to fill in the implementation of
 `allDirs dir` which returns a list of *all the sub-directories*
@@ -563,7 +574,7 @@ When you are done, you should see the following behavior:
 ```
 
 
-### `findFiles`
+### `findFiles` (16 points)
 
 Understand and use `foldDir` to fill in the implementation of
 `findFiles sub dir` which returns a list of *all the files*
@@ -578,7 +589,7 @@ When you are done, you should see the following behavior:
 
 ```
 
-### `build`
+### `build` (32 points)
 
 Finally, complete the implementation of the function
 `build path` that recursively traverses the filesystem

@@ -83,13 +83,13 @@ instance QC.Arbitrary Doc where
 -------------------------------------------------------------------------------
 -- | Dimensions of a 'Doc'
 -------------------------------------------------------------------------------
--- >>> width beers
--- 11
+-- >>> width aDoc
+-- 5
 
 width :: Doc -> Int
 width (D ls) = maximum 0 (map length ls) 
 
--- >>> height beers
+-- >>> height aDoc
 -- 3
 
 height :: Doc -> Int
