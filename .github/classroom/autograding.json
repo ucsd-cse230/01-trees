@@ -1,0 +1,354 @@
+{
+  "tests": [
+     { 
+      "name": "clone-1",
+      "run": "stack test --test-arguments '-p clone-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "clone-2",
+      "run": "stack test --test-arguments '-p clone-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "pad-1",
+      "run": "stack test --test-arguments '-p pad-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "pad-2",
+      "run": "stack test --test-arguments '-p pad-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "pad-3",
+      "run": "stack test --test-arguments '-p pad-3'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "pad-4",
+      "run": "stack test --test-arguments '-p pad-4'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "issub-1",
+      "run": "stack test --test-arguments '-p issub-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "issub-2",
+      "run": "stack test --test-arguments '-p issub-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "maximum-1",
+      "run": "stack test --test-arguments '-p maximum-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "maximum-2",
+      "run": "stack test --test-arguments '-p maximum-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "intersp-1",
+      "run": "stack test --test-arguments '-p intersp-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "intersp-2",
+      "run": "stack test --test-arguments '-p intersp-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "iter-1",
+      "run": "stack test --test-arguments '-p iter-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+     { 
+      "name": "rainbow",
+      "run": "stack test --test-arguments '-p rainbow'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "chess-1",
+      "run": "stack test --test-arguments '-p chess-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "chess-2",
+      "run": "stack test --test-arguments '-p chess-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "triangle-1",
+      "run": "stack test --test-arguments '-p triangle-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+     { 
+      "name": "triangle-2",
+      "run": "stack test --test-arguments '-p triangle-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+     { 
+      "name": "carpet",
+      "run": "stack test --test-arguments '-p carpet'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+    },
+     { 
+      "name": "vcatL",
+      "run": "stack test --test-arguments '-p vcatL'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "vcatR",
+      "run": "stack test --test-arguments '-p vcatR'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "hcatT-1",
+      "run": "stack test --test-arguments '-p hcatT-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "hcatT-2",
+      "run": "stack test --test-arguments '-p hcatT-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "hcatB-1",
+      "run": "stack test --test-arguments '-p hcatB-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "hcatB-2",
+      "run": "stack test --test-arguments '-p hcatB-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "vcatL-1",
+      "run": "stack test --test-arguments '-p vcatL-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+     { 
+      "name": "vcatR-1",
+      "run": "stack test --test-arguments '-p vcatR-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+     { 
+      "name": "dirDoc-1",
+      "run": "stack test --test-arguments '-p dirDoc-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    },
+     { 
+      "name": "dirDoc-2",
+      "run": "stack test --test-arguments '-p dirDoc-2'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    },
+     { 
+      "name": "allFiles-1",
+      "run": "stack test --test-arguments '-p allFiles-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "allDirs-1",
+      "run": "stack test --test-arguments '-p allDirs-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+     { 
+      "name": "findFiles-1",
+      "run": "stack test --test-arguments '-p findFiles-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    },
+     { 
+      "name": "build-1",
+      "run": "stack test --test-arguments '-p build-1'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+     { 
+      "name": "htree-ls",
+      "run": "stack test --test-arguments '-p htree-ls'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    },
+     { 
+      "name": "htree-find",
+      "run": "stack test --test-arguments '-p htree-find'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    }
+  ]
+}
